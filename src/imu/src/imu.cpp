@@ -39,10 +39,8 @@ float m_acc_y;
 float m_acc_z;
 
 // for calculating the pose and position
-Matrix3f pose = MatrixXf::Identity(3,3);
-Vector3f sg = Vector3f::Zero(), vg = Vector3f::Zero(), gg;
-Vector4f q = Vector4f::Zero();
-
+Matrix3f orientation = MatrixXf::Identity(3,3);
+Vector3f sg = Vector3f::Zero(), vg = Vector3f::Zero(), gg = Vector3f::Zero();
 
 // for subscriber and publisher
 ros::Subscriber m_sub;
@@ -60,27 +58,23 @@ Matrix3f _calPose() {
                                m_angular_z*m_angular_z);
     //cout << "sigma: " << sigma << endl;
 
-    pose = pose*(MatrixXf::Identity(3,3)+sin(sigma)/sigma*B+((1.0-cos(sigma))/(sigma*sigma)*B*B));    
-
-    // transform to quaternion
-    q[0] = sqrt(1 + pose(0,0) + pose(1,1) + pose(2,2)) / 2;
-    q[1] = (pose(2,1) - pose(1,2)) / (4 * q[0]);
-    q[2] = (pose(0,2) - pose(2,0)) / (4 * q[0]);
-    q[3] = (pose(1,0) - pose(0,1)) / (4 * q[0]);
+    orientation = orientation*(MatrixXf::Identity(3,3)+sin(sigma)/sigma*B+((1.0-cos(sigma))/(sigma*sigma)*B*B));    
     
-    return pose;
+    cout << "orientation: " << orientation << endl;
+    return orientation;
 }
 
 Vector3f _calPosition() {
-    Vector3f ag, sg_old;
-    ag << m_acc_x, m_acc_y, m_acc_z;
-
-    //vg = vg + delta_t * (ag - gg);
-    vg = vg + delta_t * (ag);
-    sg_old = sg;
+    Vector3f ab, ag,sg_old;
+    ab << m_acc_x, m_acc_y, m_acc_z;
+    ag = orientation * ab;
+    
+    vg = vg + delta_t * (ag - gg);
     sg = sg + delta_t * vg;
 
-    //sg = sg + pose * (sg - sg_old);
+    //real_p = real_p + orientation * sg;
+    //sg_old = sg;
+
     cout << "sg: " << sg << endl;
     return sg;
 }
@@ -99,9 +93,9 @@ void _publish() {
     points.action = line_strip.action = visualization_msgs::Marker::ADD;
 
     // scale
-    points.scale.x = 0;
-    points.scale.y = 0;
-    points.scale.z = 0;
+    points.scale.x = 0.5;
+    points.scale.y = 0.5;
+    points.scale.z = 0.5;
     line_strip.scale.x = 0.1;
     
     // color
@@ -112,22 +106,16 @@ void _publish() {
     line_strip.color.g = 1.0;
     line_strip.color.a = 1.0;
 
-    // quaternion
-    points.pose.orientation.w = q[0];
-    points.pose.orientation.x = q[1];
-    points.pose.orientation.y = q[2];
-    points.pose.orientation.z = q[3];
-
-    // position
     geometry_msgs::Point p;
     p.x = sg[0];
     p.y = sg[1];
     p.z = sg[2];
-    points.points.push_back(p);
+    
+    //points.points.push_back(p);
     line_strip.points.push_back(p);
 
     //publish
-    m_pub.publish(points);
+    //m_pub.publish(points);
     m_pub.publish(line_strip);
     return;
 }
@@ -146,9 +134,9 @@ void _msgsCallback(const sensor_msgs::Imu::ConstPtr& msg) {
     m_angular_y = msg->angular_velocity.y;
     m_angular_z = msg->angular_velocity.z;
 
-    m_acc_x = msg->linear_acceleration.x - m_acc_x_init;
-    m_acc_y = msg->linear_acceleration.y - m_acc_y_init;
-    m_acc_z = msg->linear_acceleration.z - m_acc_z_init;
+    m_acc_x = msg->linear_acceleration.x;// - m_acc_x_init;
+    m_acc_y = msg->linear_acceleration.y;// - m_acc_y_init;
+    m_acc_z = msg->linear_acceleration.z;// - m_acc_z_init;
 
     // calculate pose and position
     _calPose();
