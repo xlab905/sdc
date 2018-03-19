@@ -14,7 +14,6 @@
 #include <sensor_msgs/Imu.h>
 #include <geometry_msgs/Quaternion.h>
 #include <geometry_msgs/Vector3.h>
-//#include <geometry_msgs/Pose.h>
 #include <eigen3/Eigen/Eigen>
 #include <eigen3/Eigen/Dense>
 
@@ -41,12 +40,12 @@ float m_acc_z;
 
 // for calculating the pose and position
 Matrix3f pose = MatrixXf::Identity(3,3);
-Vector3f sg, vg, gg;
+Vector3f sg = Vector3f::Zero(), vg = Vector3f::Zero(), gg;
 
 // for subscriber and publisher
 ros::Subscriber m_sub;
 ros::Publisher m_pub;
-visualization_msgs::Marker marker;
+visualization_msgs::Marker points, line_strip;
 
 Matrix3f _calPose() {
     Matrix3f B;
@@ -67,37 +66,54 @@ Vector3f _calPosition() {
     Vector3f ag;
     ag << m_acc_x, m_acc_y, m_acc_z;
 
-    vg = vg + delta_t * (ag - gg);
+    //vg = vg + delta_t * (ag - gg);
+    vg = vg + delta_t * (ag);
     sg = sg + delta_t * vg;
-
-    //cout << "sg[1]: " << sg[1] << endl;
 
     cout << "sg: " << sg << endl;
     return sg;
 }
 
 void _publish() {
-
     // write messages
-    marker.header.frame_id = "/map";
-    marker.header.stamp = ros::Time::now();
-    marker.id = 0;
-    marker.type = visualization_msgs::Marker::SPHERE;
-    marker.action = visualization_msgs::Marker::ADD;
-    marker.pose.position.x = sg[0];
-    marker.pose.position.y = sg[1];
-    marker.pose.position.z = sg[2];
-    // scale
-    marker.scale.x = 0.5;
-    marker.scale.y = 0.5;
-    marker.scale.z = 0.5;
-    // color
-    marker.color.r = 0.0f;
-    marker.color.g = 1.0f;
-    marker.color.b = 0.0f;
-    marker.color.a = 1.0;
+    points.header.frame_id = line_strip.header.frame_id = "/map";
+    points.header.stamp = line_strip.header.stamp = ros::Time::now();
 
-    m_pub.publish(marker);
+    points.id = 0;
+    line_strip.id = 1;
+    
+    points.type = visualization_msgs::Marker::SPHERE;
+    line_strip.type = visualization_msgs::Marker::LINE_STRIP;
+
+    points.action = line_strip.action = visualization_msgs::Marker::ADD;
+    
+    //points.pose.position.x = sg[0];
+    //points.pose.position.y = sg[1];
+    //points.pose.position.z = sg[2];
+
+    // scale
+    points.scale.x = 0.5;
+    points.scale.y = 0.5;
+    points.scale.z = 0.5;
+    line_strip.scale.x = 0.1;
+    
+    // color
+    points.color.r = 0.0f;
+    points.color.g = 1.0f;
+    points.color.b = 0.0f;
+    points.color.a = 1.0;
+    line_strip.color.r = 1.0;
+    line_strip.color.a = 1.0;
+
+    geometry_msgs::Point p;
+    p.x = sg[0];
+    p.y = sg[1];
+    p.z = sg[2];
+    points.points.push_back(p);
+    line_strip.points.push_back(p);
+
+    m_pub.publish(points);
+    m_pub.publish(line_strip);
     return;
 }
 
@@ -139,7 +155,7 @@ int main(int argc, char **argv) {
     
     m_pub = n.advertise<visualization_msgs::Marker>("marker", 10);
     
-    ros::Rate r(10);
+    ros::Rate r(30);
     ros::spin();
 
     return 0;
