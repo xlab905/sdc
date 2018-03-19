@@ -21,34 +21,8 @@
 //using namespace std;
 using namespace Eigen;
 using namespace std;
-/*
-class IMU {
-
-#public:
-    void _msgsCallback(const sensor_msgs::Imu::ConstPtr& msg);
     
-    //Matrix3f _dcm(Matrix3f angular_v);
-
-    float _integrate(float acc, int t);
-
-    
-private:
-
-    float m_angular_x;
-    float m_angular_y;
-    float m_angular_z;
-
-    float m_acc_x_init;
-    float m_acc_y_init;
-    float m_acc_z_init;
-
-    float m_acc_x;
-    float m_acc_y;
-    float m_acc_z;
-};
-*/
-    
-/* define variables used in this file */
+//// define variables used in this file ////
 const float delta_t = 0.005;
 int m_count = 0;
    
@@ -73,7 +47,6 @@ Vector3f sg, vg, gg;
 ros::Subscriber m_sub;
 ros::Publisher m_pub;
 visualization_msgs::Marker marker;
-
 
 Matrix3f _calPose() {
     Matrix3f B;
@@ -167,21 +140,6 @@ int main(int argc, char **argv) {
     m_pub = n.advertise<visualization_msgs::Marker>("marker", 10);
     
     ros::Rate r(10);
-    /*
-    while(ros::ok()) {
-        marker.header.frame_id = "/my_frame";
-        marker.header.stamp = ros::Time::now();
-
-        marker.ns = "basic_shapes";
-        marker.id = 0;
- 
-        marker.type = visualization_msgs::Marker::SPHERE;
-
-        marker.action = visualization_msgs::Marker::ADD;
-
-        marker.pose.position.x = 
-    }
-    */
     ros::spin();
 
     return 0;

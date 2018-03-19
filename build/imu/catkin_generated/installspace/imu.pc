@@ -1,8 +1,0 @@
-prefix=/home/bruce/sdc/install
-
-Name: imu
-Description: Description of imu
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/bruce/sdc/install/lib 
-Requires: 

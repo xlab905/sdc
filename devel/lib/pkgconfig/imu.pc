@@ -1,8 +1,0 @@
-prefix=/home/bruce/sdc/devel
-
-Name: imu
-Description: Description of imu
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/bruce/sdc/devel/lib 
-Requires: 
