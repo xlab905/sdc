@@ -41,6 +41,8 @@ float m_acc_z;
 // for calculating the pose and position
 Matrix3f pose = MatrixXf::Identity(3,3);
 Vector3f sg = Vector3f::Zero(), vg = Vector3f::Zero(), gg;
+Vector4f q = Vector4f::Zero();
+
 
 // for subscriber and publisher
 ros::Subscriber m_sub;
@@ -59,17 +61,26 @@ Matrix3f _calPose() {
     //cout << "sigma: " << sigma << endl;
 
     pose = pose*(MatrixXf::Identity(3,3)+sin(sigma)/sigma*B+((1.0-cos(sigma))/(sigma*sigma)*B*B));    
+
+    // transform to quaternion
+    q[0] = sqrt(1 + pose(0,0) + pose(1,1) + pose(2,2)) / 2;
+    q[1] = (pose(2,1) - pose(1,2)) / (4 * q[0]);
+    q[2] = (pose(0,2) - pose(2,0)) / (4 * q[0]);
+    q[3] = (pose(1,0) - pose(0,1)) / (4 * q[0]);
+    
     return pose;
 }
 
 Vector3f _calPosition() {
-    Vector3f ag;
+    Vector3f ag, sg_old;
     ag << m_acc_x, m_acc_y, m_acc_z;
 
     //vg = vg + delta_t * (ag - gg);
     vg = vg + delta_t * (ag);
+    sg_old = sg;
     sg = sg + delta_t * vg;
 
+    //sg = sg + pose * (sg - sg_old);
     cout << "sg: " << sg << endl;
     return sg;
 }
@@ -86,15 +97,11 @@ void _publish() {
     line_strip.type = visualization_msgs::Marker::LINE_STRIP;
 
     points.action = line_strip.action = visualization_msgs::Marker::ADD;
-    
-    //points.pose.position.x = sg[0];
-    //points.pose.position.y = sg[1];
-    //points.pose.position.z = sg[2];
 
     // scale
-    points.scale.x = 0.5;
-    points.scale.y = 0.5;
-    points.scale.z = 0.5;
+    points.scale.x = 0;
+    points.scale.y = 0;
+    points.scale.z = 0;
     line_strip.scale.x = 0.1;
     
     // color
@@ -102,9 +109,16 @@ void _publish() {
     points.color.g = 1.0f;
     points.color.b = 0.0f;
     points.color.a = 1.0;
-    line_strip.color.r = 1.0;
+    line_strip.color.g = 1.0;
     line_strip.color.a = 1.0;
 
+    // quaternion
+    points.pose.orientation.w = q[0];
+    points.pose.orientation.x = q[1];
+    points.pose.orientation.y = q[2];
+    points.pose.orientation.z = q[3];
+
+    // position
     geometry_msgs::Point p;
     p.x = sg[0];
     p.y = sg[1];
@@ -112,6 +126,7 @@ void _publish() {
     points.points.push_back(p);
     line_strip.points.push_back(p);
 
+    //publish
     m_pub.publish(points);
     m_pub.publish(line_strip);
     return;
