@@ -1,0 +1,2 @@
+imu
+-DCATKIN_DEVEL_PREFIX=/home/sdc/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/sdc/catkin_ws/install -G Unix Makefiles
