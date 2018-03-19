@@ -1,8 +1,8 @@
-prefix=/home/sdc/catkin_ws/install
+prefix=/home/bruce/sdc/install
 
 Name: imu
 Description: Description of imu
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/sdc/catkin_ws/install/lib 
+Libs: -L/home/bruce/sdc/install/lib 
 Requires: 

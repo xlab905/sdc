@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/sdc/catkin_ws/src/imu/src/imu.cpp" "/home/sdc/catkin_ws/build/imu/CMakeFiles/imu.dir/src/imu.cpp.o"
+  "/home/bruce/sdc/src/imu/src/imu.cpp" "/home/bruce/sdc/build/imu/CMakeFiles/imu.dir/src/imu.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,8 +19,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
-  "/home/sdc/catkin_ws/src/imu/imu"
-  "/home/sdc/catkin_ws/src/imu/./include"
+  "/home/bruce/sdc/src/imu/imu"
+  "/home/bruce/sdc/src/imu/./include"
   )
 
 # Targets to which this target links.

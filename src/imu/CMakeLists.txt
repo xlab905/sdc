@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
+  visualization_msgs REQUIRED COMPONENTS
 )
 
 ## System dependencies are found with CMake's conventions
@@ -199,6 +200,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 include_directories(imu ./include)
+include_directories(imu /opt/ros/kinetic/include)
 add_executable(imu src/imu.cpp)
 target_link_libraries(imu ${catkin_LIBRARIES})
 

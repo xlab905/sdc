@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sdc/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/bruce/sdc/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sdc/catkin_ws/build
+CMAKE_BINARY_DIR = /home/bruce/sdc/build
 
 # Utility rule file for geometry_msgs_generate_messages_eus.
 
@@ -63,10 +63,10 @@ imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build: geometry_msgs_gene
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
 
 imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean:
-	cd /home/sdc/catkin_ws/build/imu && $(CMAKE_COMMAND) -P CMakeFiles/geometry_msgs_generate_messages_eus.dir/cmake_clean.cmake
+	cd /home/bruce/sdc/build/imu && $(CMAKE_COMMAND) -P CMakeFiles/geometry_msgs_generate_messages_eus.dir/cmake_clean.cmake
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
 
 imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/depend:
-	cd /home/sdc/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdc/catkin_ws/src /home/sdc/catkin_ws/src/imu /home/sdc/catkin_ws/build /home/sdc/catkin_ws/build/imu /home/sdc/catkin_ws/build/imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/bruce/sdc/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bruce/sdc/src /home/bruce/sdc/src/imu /home/bruce/sdc/build /home/bruce/sdc/build/imu /home/bruce/sdc/build/imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/depend
 

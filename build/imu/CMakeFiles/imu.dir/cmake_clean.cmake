@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/imu.dir/src/imu.cpp.o"
-  "/home/sdc/catkin_ws/devel/lib/imu/imu.pdb"
-  "/home/sdc/catkin_ws/devel/lib/imu/imu"
+  "/home/bruce/sdc/devel/lib/imu/imu.pdb"
+  "/home/bruce/sdc/devel/lib/imu/imu"
 )
 
 # Per-language clean rules from dependency scanning.

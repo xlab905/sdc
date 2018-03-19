@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sdc/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/bruce/sdc/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sdc/catkin_ws/build
+CMAKE_BINARY_DIR = /home/bruce/sdc/build
 
 # Include any dependencies generated for this target.
 include imu/CMakeFiles/imu.dir/depend.make
@@ -58,17 +58,17 @@ include imu/CMakeFiles/imu.dir/progress.make
 include imu/CMakeFiles/imu.dir/flags.make
 
 imu/CMakeFiles/imu.dir/src/imu.cpp.o: imu/CMakeFiles/imu.dir/flags.make
-imu/CMakeFiles/imu.dir/src/imu.cpp.o: /home/sdc/catkin_ws/src/imu/src/imu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdc/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object imu/CMakeFiles/imu.dir/src/imu.cpp.o"
-	cd /home/sdc/catkin_ws/build/imu && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imu.dir/src/imu.cpp.o -c /home/sdc/catkin_ws/src/imu/src/imu.cpp
+imu/CMakeFiles/imu.dir/src/imu.cpp.o: /home/bruce/sdc/src/imu/src/imu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bruce/sdc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object imu/CMakeFiles/imu.dir/src/imu.cpp.o"
+	cd /home/bruce/sdc/build/imu && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imu.dir/src/imu.cpp.o -c /home/bruce/sdc/src/imu/src/imu.cpp
 
 imu/CMakeFiles/imu.dir/src/imu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imu.dir/src/imu.cpp.i"
-	cd /home/sdc/catkin_ws/build/imu && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdc/catkin_ws/src/imu/src/imu.cpp > CMakeFiles/imu.dir/src/imu.cpp.i
+	cd /home/bruce/sdc/build/imu && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bruce/sdc/src/imu/src/imu.cpp > CMakeFiles/imu.dir/src/imu.cpp.i
 
 imu/CMakeFiles/imu.dir/src/imu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imu.dir/src/imu.cpp.s"
-	cd /home/sdc/catkin_ws/build/imu && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdc/catkin_ws/src/imu/src/imu.cpp -o CMakeFiles/imu.dir/src/imu.cpp.s
+	cd /home/bruce/sdc/build/imu && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bruce/sdc/src/imu/src/imu.cpp -o CMakeFiles/imu.dir/src/imu.cpp.s
 
 imu/CMakeFiles/imu.dir/src/imu.cpp.o.requires:
 
@@ -88,33 +88,33 @@ imu_OBJECTS = \
 # External object files for target imu
 imu_EXTERNAL_OBJECTS =
 
-/home/sdc/catkin_ws/devel/lib/imu/imu: imu/CMakeFiles/imu.dir/src/imu.cpp.o
-/home/sdc/catkin_ws/devel/lib/imu/imu: imu/CMakeFiles/imu.dir/build.make
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/libroscpp.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/librosconsole.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/libxmlrpcpp.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/libroscpp_serialization.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/librostime.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /opt/ros/kinetic/lib/libcpp_common.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/sdc/catkin_ws/devel/lib/imu/imu: imu/CMakeFiles/imu.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sdc/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/sdc/catkin_ws/devel/lib/imu/imu"
-	cd /home/sdc/catkin_ws/build/imu && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/imu.dir/link.txt --verbose=$(VERBOSE)
+/home/bruce/sdc/devel/lib/imu/imu: imu/CMakeFiles/imu.dir/src/imu.cpp.o
+/home/bruce/sdc/devel/lib/imu/imu: imu/CMakeFiles/imu.dir/build.make
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/libroscpp.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/librosconsole.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/libxmlrpcpp.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/libroscpp_serialization.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/librostime.so
+/home/bruce/sdc/devel/lib/imu/imu: /opt/ros/kinetic/lib/libcpp_common.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/bruce/sdc/devel/lib/imu/imu: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/bruce/sdc/devel/lib/imu/imu: imu/CMakeFiles/imu.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bruce/sdc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/bruce/sdc/devel/lib/imu/imu"
+	cd /home/bruce/sdc/build/imu && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/imu.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-imu/CMakeFiles/imu.dir/build: /home/sdc/catkin_ws/devel/lib/imu/imu
+imu/CMakeFiles/imu.dir/build: /home/bruce/sdc/devel/lib/imu/imu
 
 .PHONY : imu/CMakeFiles/imu.dir/build
 
@@ -123,10 +123,10 @@ imu/CMakeFiles/imu.dir/requires: imu/CMakeFiles/imu.dir/src/imu.cpp.o.requires
 .PHONY : imu/CMakeFiles/imu.dir/requires
 
 imu/CMakeFiles/imu.dir/clean:
-	cd /home/sdc/catkin_ws/build/imu && $(CMAKE_COMMAND) -P CMakeFiles/imu.dir/cmake_clean.cmake
+	cd /home/bruce/sdc/build/imu && $(CMAKE_COMMAND) -P CMakeFiles/imu.dir/cmake_clean.cmake
 .PHONY : imu/CMakeFiles/imu.dir/clean
 
 imu/CMakeFiles/imu.dir/depend:
-	cd /home/sdc/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdc/catkin_ws/src /home/sdc/catkin_ws/src/imu /home/sdc/catkin_ws/build /home/sdc/catkin_ws/build/imu /home/sdc/catkin_ws/build/imu/CMakeFiles/imu.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/bruce/sdc/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bruce/sdc/src /home/bruce/sdc/src/imu /home/bruce/sdc/build /home/bruce/sdc/build/imu /home/bruce/sdc/build/imu/CMakeFiles/imu.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : imu/CMakeFiles/imu.dir/depend
 

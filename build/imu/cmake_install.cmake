@@ -1,8 +1,8 @@
-# Install script for directory: /home/sdc/catkin_ws/src/imu
+# Install script for directory: /home/bruce/sdc/src/imu
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sdc/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/bruce/sdc/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/sdc/catkin_ws/build/imu/catkin_generated/installspace/imu.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/bruce/sdc/build/imu/catkin_generated/installspace/imu.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/imu/cmake" TYPE FILE FILES
-    "/home/sdc/catkin_ws/build/imu/catkin_generated/installspace/imuConfig.cmake"
-    "/home/sdc/catkin_ws/build/imu/catkin_generated/installspace/imuConfig-version.cmake"
+    "/home/bruce/sdc/build/imu/catkin_generated/installspace/imuConfig.cmake"
+    "/home/bruce/sdc/build/imu/catkin_generated/installspace/imuConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/imu" TYPE FILE FILES "/home/sdc/catkin_ws/src/imu/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/imu" TYPE FILE FILES "/home/bruce/sdc/src/imu/package.xml")
 endif()
 

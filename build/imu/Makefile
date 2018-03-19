@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sdc/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/bruce/sdc/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sdc/catkin_ws/build
+CMAKE_BINARY_DIR = /home/bruce/sdc/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -112,6 +112,17 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -124,14 +135,14 @@ list_install_components/fast: list_install_components
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/sdc/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sdc/catkin_ws/build/CMakeFiles /home/sdc/catkin_ws/build/imu/CMakeFiles/progress.marks
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdc/catkin_ws/build/CMakeFiles 0
+	cd /home/bruce/sdc/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/bruce/sdc/build/CMakeFiles /home/bruce/sdc/build/imu/CMakeFiles/progress.marks
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bruce/sdc/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/clean
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +152,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/preinstall
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/preinstall
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sdc/catkin_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/bruce/sdc/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 imu/CMakeFiles/imu.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/imu.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/imu.dir/rule
 .PHONY : imu/CMakeFiles/imu.dir/rule
 
 # Convenience name for target.
@@ -166,12 +177,42 @@ imu: imu/CMakeFiles/imu.dir/rule
 
 # fast build rule for target.
 imu/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/build
 .PHONY : imu/fast
 
 # Convenience name for target.
+imu/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
+.PHONY : imu/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_eus: imu/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_eus
+
+# fast build rule for target.
+visualization_msgs_generate_messages_eus/fast:
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
+.PHONY : visualization_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+imu/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule:
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+.PHONY : imu/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_cpp: imu/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_cpp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_cpp/fast:
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
+.PHONY : visualization_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
 imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -181,12 +222,27 @@ geometry_msgs_generate_messages_py: imu/CMakeFiles/geometry_msgs_generate_messag
 
 # fast build rule for target.
 geometry_msgs_generate_messages_py/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 # Convenience name for target.
+imu/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule:
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+.PHONY : imu/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_py: imu/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_py
+
+# fast build rule for target.
+visualization_msgs_generate_messages_py/fast:
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
+.PHONY : visualization_msgs_generate_messages_py/fast
+
+# Convenience name for target.
 imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -196,12 +252,12 @@ geometry_msgs_generate_messages_nodejs: imu/CMakeFiles/geometry_msgs_generate_me
 
 # fast build rule for target.
 geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 .PHONY : geometry_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 .PHONY : imu/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -211,12 +267,12 @@ std_msgs_generate_messages_py: imu/CMakeFiles/std_msgs_generate_messages_py.dir/
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 .PHONY : imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -226,12 +282,12 @@ sensor_msgs_generate_messages_py: imu/CMakeFiles/sensor_msgs_generate_messages_p
 
 # fast build rule for target.
 sensor_msgs_generate_messages_py/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
 .PHONY : sensor_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 imu/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
 .PHONY : imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -241,12 +297,12 @@ roscpp_generate_messages_py: imu/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_py.dir/build.make imu/CMakeFiles/roscpp_generate_messages_py.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_py.dir/build.make imu/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
 imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 .PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -256,12 +312,12 @@ rosgraph_msgs_generate_messages_eus: imu/CMakeFiles/rosgraph_msgs_generate_messa
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 .PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -271,12 +327,12 @@ rosgraph_msgs_generate_messages_nodejs: imu/CMakeFiles/rosgraph_msgs_generate_me
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -286,12 +342,12 @@ geometry_msgs_generate_messages_eus: imu/CMakeFiles/geometry_msgs_generate_messa
 
 # fast build rule for target.
 geometry_msgs_generate_messages_eus/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
 .PHONY : geometry_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 .PHONY : imu/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -301,12 +357,12 @@ roscpp_generate_messages_cpp: imu/CMakeFiles/roscpp_generate_messages_cpp.dir/ru
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make imu/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 .PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -316,12 +372,12 @@ rosgraph_msgs_generate_messages_cpp: imu/CMakeFiles/rosgraph_msgs_generate_messa
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 .PHONY : imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -331,12 +387,12 @@ std_msgs_generate_messages_cpp: imu/CMakeFiles/std_msgs_generate_messages_cpp.di
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 .PHONY : imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -346,12 +402,12 @@ sensor_msgs_generate_messages_nodejs: imu/CMakeFiles/sensor_msgs_generate_messag
 
 # fast build rule for target.
 sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
 .PHONY : sensor_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -361,12 +417,27 @@ geometry_msgs_generate_messages_cpp: imu/CMakeFiles/geometry_msgs_generate_messa
 
 # fast build rule for target.
 geometry_msgs_generate_messages_cpp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+imu/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule:
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
+.PHONY : imu/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_lisp: imu/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_lisp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_lisp/fast:
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
+.PHONY : visualization_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
 imu/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 .PHONY : imu/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -376,12 +447,12 @@ roscpp_generate_messages_eus: imu/CMakeFiles/roscpp_generate_messages_eus.dir/ru
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_eus.dir/build.make imu/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_eus.dir/build.make imu/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 # Convenience name for target.
 imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 .PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -391,12 +462,12 @@ rosgraph_msgs_generate_messages_py: imu/CMakeFiles/rosgraph_msgs_generate_messag
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 .PHONY : imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -406,12 +477,12 @@ rosgraph_msgs_generate_messages_lisp: imu/CMakeFiles/rosgraph_msgs_generate_mess
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 .PHONY : imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -421,12 +492,12 @@ roscpp_generate_messages_nodejs: imu/CMakeFiles/roscpp_generate_messages_nodejs.
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make imu/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 # Convenience name for target.
 imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 .PHONY : imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -436,12 +507,12 @@ std_msgs_generate_messages_nodejs: imu/CMakeFiles/std_msgs_generate_messages_nod
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 .PHONY : imu/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -451,12 +522,12 @@ roscpp_generate_messages_lisp: imu/CMakeFiles/roscpp_generate_messages_lisp.dir/
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make imu/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 .PHONY : imu/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -466,12 +537,12 @@ std_msgs_generate_messages_eus: imu/CMakeFiles/std_msgs_generate_messages_eus.di
 
 # fast build rule for target.
 std_msgs_generate_messages_eus/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
 .PHONY : imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -481,12 +552,12 @@ geometry_msgs_generate_messages_lisp: imu/CMakeFiles/geometry_msgs_generate_mess
 
 # fast build rule for target.
 geometry_msgs_generate_messages_lisp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
 .PHONY : geometry_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 .PHONY : imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -496,12 +567,12 @@ std_msgs_generate_messages_lisp: imu/CMakeFiles/std_msgs_generate_messages_lisp.
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 .PHONY : imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -511,12 +582,27 @@ sensor_msgs_generate_messages_cpp: imu/CMakeFiles/sensor_msgs_generate_messages_
 
 # fast build rule for target.
 sensor_msgs_generate_messages_cpp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
 .PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+imu/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+.PHONY : imu/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_nodejs: imu/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+visualization_msgs_generate_messages_nodejs/fast:
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make imu/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
+.PHONY : visualization_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
 imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
 .PHONY : imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -526,12 +612,12 @@ sensor_msgs_generate_messages_eus: imu/CMakeFiles/sensor_msgs_generate_messages_
 
 # fast build rule for target.
 sensor_msgs_generate_messages_eus/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
 .PHONY : sensor_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+	cd /home/bruce/sdc/build && $(MAKE) -f CMakeFiles/Makefile2 imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
 .PHONY : imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -541,7 +627,7 @@ sensor_msgs_generate_messages_lisp: imu/CMakeFiles/sensor_msgs_generate_messages
 
 # fast build rule for target.
 sensor_msgs_generate_messages_lisp/fast:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make imu/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
 .PHONY : sensor_msgs_generate_messages_lisp/fast
 
 src/imu.o: src/imu.cpp.o
@@ -550,7 +636,7 @@ src/imu.o: src/imu.cpp.o
 
 # target to build an object file
 src/imu.cpp.o:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/src/imu.cpp.o
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/src/imu.cpp.o
 .PHONY : src/imu.cpp.o
 
 src/imu.i: src/imu.cpp.i
@@ -559,7 +645,7 @@ src/imu.i: src/imu.cpp.i
 
 # target to preprocess a source file
 src/imu.cpp.i:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/src/imu.cpp.i
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/src/imu.cpp.i
 .PHONY : src/imu.cpp.i
 
 src/imu.s: src/imu.cpp.s
@@ -568,7 +654,7 @@ src/imu.s: src/imu.cpp.s
 
 # target to generate assembly for a file
 src/imu.cpp.s:
-	cd /home/sdc/catkin_ws/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/src/imu.cpp.s
+	cd /home/bruce/sdc/build && $(MAKE) -f imu/CMakeFiles/imu.dir/build.make imu/CMakeFiles/imu.dir/src/imu.cpp.s
 .PHONY : src/imu.cpp.s
 
 # Help Target
@@ -582,8 +668,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... install/local"
+	@echo "... install/strip"
 	@echo "... imu"
+	@echo "... visualization_msgs_generate_messages_eus"
+	@echo "... visualization_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_py"
@@ -596,6 +686,7 @@ help:
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... visualization_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
@@ -607,6 +698,7 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... list_install_components"
+	@echo "... visualization_msgs_generate_messages_nodejs"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_lisp"
 	@echo "... src/imu.o"
@@ -623,6 +715,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sdc/catkin_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/bruce/sdc/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

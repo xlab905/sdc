@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/sdc/catkin_ws/src/imu/src/imu.cpp
+/home/bruce/sdc/src/imu/src/imu.cpp
 stdio.h
 -
 stdlib.h
@@ -25,6 +25,8 @@ rosbag/bag.h
 -
 rosbag/view.h
 -
+visualization_msgs/Marker.h
+-
 std_msgs/String.h
 -
 sensor_msgs/Imu.h
@@ -36,6 +38,42 @@ geometry_msgs/Vector3.h
 eigen3/Eigen/Eigen
 -
 eigen3/Eigen/Dense
+-
+
+/opt/ros/kinetic/include/geometry_msgs/Point.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/opt/ros/kinetic/include/geometry_msgs/Pose.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+geometry_msgs/Point.h
+-
+geometry_msgs/Quaternion.h
 -
 
 /opt/ros/kinetic/include/geometry_msgs/Quaternion.h
@@ -767,6 +805,8 @@ boost/iterator/iterator_facade.hpp
 -
 console_bridge/console.h
 /opt/ros/kinetic/include/rosbag/console_bridge/console.h
+rosbag/console_bridge_compatibility.h
+/opt/ros/kinetic/include/rosbag/rosbag/console_bridge_compatibility.h
 rosbag/message_instance.h
 /opt/ros/kinetic/include/rosbag/rosbag/message_instance.h
 
@@ -791,6 +831,10 @@ bzlib.h
 -
 rosbag/stream.h
 /opt/ros/kinetic/include/rosbag/rosbag/stream.h
+
+/opt/ros/kinetic/include/rosbag/console_bridge_compatibility.h
+console_bridge/console.h
+-
 
 /opt/ros/kinetic/include/rosbag/constants.h
 string
@@ -910,6 +954,22 @@ geometry_msgs/Vector3.h
 geometry_msgs/Vector3.h
 -
 
+/opt/ros/kinetic/include/std_msgs/ColorRGBA.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /opt/ros/kinetic/include/std_msgs/Header.h
 string
 -
@@ -940,6 +1000,34 @@ ros/serialization.h
 ros/builtin_message_traits.h
 -
 ros/message_operations.h
+-
+
+/opt/ros/kinetic/include/visualization_msgs/Marker.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+geometry_msgs/Pose.h
+-
+geometry_msgs/Vector3.h
+-
+std_msgs/ColorRGBA.h
+-
+geometry_msgs/Point.h
+-
+std_msgs/ColorRGBA.h
 -
 
 /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
