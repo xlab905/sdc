@@ -45,9 +45,9 @@ Vector3f sg = Vector3f::Zero(), vg = Vector3f::Zero(), gg = Vector3f::Zero();
 // for subscriber and publisher
 ros::Subscriber m_sub;
 ros::Publisher m_pub;
-visualization_msgs::Marker points, line_strip;
+visualization_msgs::Marker line_strip;
 
-Matrix3f _calPose() {
+void _calPose() {
     Matrix3f B;
     B << 0, -m_angular_z*delta_t, m_angular_y*delta_t,
          m_angular_z*delta_t, 0, -m_angular_x*delta_t,
@@ -56,66 +56,55 @@ Matrix3f _calPose() {
     float sigma = delta_t*sqrt(m_angular_x*m_angular_x+
                                m_angular_y*m_angular_y+
                                m_angular_z*m_angular_z);
-    //cout << "sigma: " << sigma << endl;
 
-    orientation = orientation*(MatrixXf::Identity(3,3)+sin(sigma)/sigma*B+((1.0-cos(sigma))/(sigma*sigma)*B*B));    
-    
+    orientation = orientation * ( MatrixXf::Identity(3,3) + 
+                                  sin(sigma) / sigma * B +
+                                  ((1.0-cos(sigma)) / (sigma*sigma) * (B*B) ));
+
     cout << "orientation: " << orientation << endl;
-    return orientation;
+    return;
 }
 
-Vector3f _calPosition() {
-    Vector3f ab, ag,sg_old;
+void _calPosition() {
+    // define body acc and global acc
+    Vector3f ab, ag;
     ab << m_acc_x, m_acc_y, m_acc_z;
     ag = orientation * ab;
     
+    // calculate position by intergrating two times
     vg = vg + delta_t * (ag - gg);
     sg = sg + delta_t * vg;
 
-    //real_p = real_p + orientation * sg;
-    //sg_old = sg;
-
     cout << "sg: " << sg << endl;
-    return sg;
+    return;
 }
 
 void _publish() {
-    // write messages
-    points.header.frame_id = line_strip.header.frame_id = "/map";
-    points.header.stamp = line_strip.header.stamp = ros::Time::now();
-
-    points.id = 0;
+    // define line_strip messages
+    line_strip.header.frame_id = "/map";
+    line_strip.header.stamp = ros::Time::now();
+    
     line_strip.id = 1;
     
-    points.type = visualization_msgs::Marker::SPHERE;
     line_strip.type = visualization_msgs::Marker::LINE_STRIP;
 
-    points.action = line_strip.action = visualization_msgs::Marker::ADD;
+    line_strip.action = visualization_msgs::Marker::ADD;
 
     // scale
-    points.scale.x = 0.5;
-    points.scale.y = 0.5;
-    points.scale.z = 0.5;
     line_strip.scale.x = 0.1;
     
     // color
-    points.color.r = 0.0f;
-    points.color.g = 1.0f;
-    points.color.b = 0.0f;
-    points.color.a = 1.0;
     line_strip.color.g = 1.0;
     line_strip.color.a = 1.0;
 
+    // push back points
     geometry_msgs::Point p;
     p.x = sg[0];
     p.y = sg[1];
     p.z = sg[2];
-    
-    //points.points.push_back(p);
     line_strip.points.push_back(p);
 
-    //publish
-    //m_pub.publish(points);
+    // publish
     m_pub.publish(line_strip);
     return;
 }
@@ -142,6 +131,7 @@ void _msgsCallback(const sensor_msgs::Imu::ConstPtr& msg) {
     _calPose();
     _calPosition();
 
+    // publish to rviz
     _publish();
 
     return;
@@ -155,11 +145,9 @@ int main(int argc, char **argv) {
     
     // for subscribing rosbag information
     m_sub = n.subscribe("/imu/data", 1000, _msgsCallback);
-    
     m_pub = n.advertise<visualization_msgs::Marker>("marker", 10);
     
     ros::Rate r(30);
     ros::spin();
-
     return 0;
 }

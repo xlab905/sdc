@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(imu)
+project(0560032_hw3)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -199,8 +199,8 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-include_directories(imu ./include)
-include_directories(imu /opt/ros/kinetic/include)
-add_executable(imu src/imu.cpp)
-target_link_libraries(imu ${catkin_LIBRARIES})
+include_directories(0560032_hw3 ./include)
+include_directories(0560032_hw3 /opt/ros/kinetic/include)
+add_executable(hw3 src/imu.cpp)
+target_link_libraries(hw3 ${catkin_LIBRARIES})
 
