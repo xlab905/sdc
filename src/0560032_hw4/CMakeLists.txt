@@ -4,7 +4,7 @@ project(0560032_hw4)
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
 
-
+set(PCL_INCLUDE_DIRS "/usr/include/pcl-1.7/")
 #set(PCL_DIR "/usr/local/pcl-1-8/share/pcl-1.8/")
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
