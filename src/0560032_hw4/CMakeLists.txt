@@ -10,6 +10,7 @@ set(PCL_INCLUDE_DIRS "/usr/include/pcl-1.7/")
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  tf
   roscpp
   sensor_msgs
   std_msgs

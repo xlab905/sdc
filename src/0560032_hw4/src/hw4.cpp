@@ -9,8 +9,6 @@
 #include <rosbag/bag.h>
 #include <rosbag/view.h>
 
-#include <boost/program_options.hpp>
-
 #include <visualization_msgs/Marker.h>
 #include <std_msgs/String.h>
 #include <sensor_msgs/PointCloud2.h>
@@ -41,21 +39,23 @@ string scene_filename, map_filename;
 PointCloud::Ptr cloud_scene (new PointCloud);
 PointCloud::Ptr cloud_map (new PointCloud);
 
-
 // ros publisher
 ros::Publisher m_pub_scene, m_pub_map;
 
-void _load_pcd() {
-    scene_filename = "/home/sdc/catkin_ws/src/scene.pcd";
-    map_filename = "/home/sdc/catkin_ws/src/map.pcd";
+int _load_pcd() {
 
     if(pcl::io::loadPCDFile<pcl::PointXYZ> (scene_filename, *cloud_scene) == -1) {
-        PCL_ERROR("Could not real file %s", scene_filename);
+        return 0;
+    }
+    else {
+        cout << COUT_PREFIX << "Load scene success" << endl;
     }
     if(pcl::io::loadPCDFile<pcl::PointXYZ> (map_filename, *cloud_map) == -1) {
-        PCL_ERROR("Could not real file %s", map_filename);
+        return 0;
     }
-    cout << COUT_PREFIX << "Load PCDs success" << endl;
+    else {
+        cout << COUT_PREFIX << "Load map success" << endl;
+    }
 }
 
 void _icp() {
@@ -74,42 +74,30 @@ void _icp() {
 }
 
 int main(int argc, char** argv) {
-    // parse arguments
-    namespace bpo = boost::program_options;
-    bpo::options_description desc("HW4");
-    desc.add_options()
-        ("help,h", "print usage")
-        ("source_cloud,s", "Source cloud")
-        ("target_cloud,t", "Target cloud")
-    ;
+    if(argc != 3) {
+        cout << COUT_PREFIX;
+        cout << "Usage: ";
+        cout << "rosrun 0560032_hw4 hw4_node ";
+        cout << "<source cloud> <target cloud>" << endl;
+        return -1;
+    }
 
-    bpo::variables_map vm;
-    bpo::store(bpo::parse_command_line(argc, argv, desc), vm);
-
-    if(vm.count("help")) {
-        cout << COUT_PREFIX << desc << endl;
-        return 0;
-    }
-    if(vm.count("source_cloud")) {
-        scene_filename = vm["source_cloud"].as<string>();  
-    }
-    if(vm.count("target_cloud")) {
-        map_filename = vm["target_cloud"].as<string>();
-    }
+    scene_filename = argv[1];
+    map_filename = argv[2];
 
     // initialize ros
     ros::init(argc, argv, "pcl");
     ros::NodeHandle n;
 
     // for publishing pcl information
-    m_pub_scene = n.advertise<PointCloud> ("output_scene", 1);
-    m_pub_map = n.advertise<PointCloud> ("output_map", 1);
+    m_pub_scene = n.advertise<sensor_msgs::PointCloud2> ("output_scene", 1);
+    m_pub_map = n.advertise<sensor_msgs::PointCloud2> ("output_map", 1);
 
-    _load_pcd();
+    if(!_load_pcd()) {return -1;};
     _icp();
 
     // publish point cloud
-    cloud_scene->header.frame_id = "/map";
+    cloud_scene->header.frame_id = "/scene";
     cloud_map->header.frame_id = "/map";
 
     ros::Rate loop_rate(4);
