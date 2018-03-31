@@ -16,9 +16,13 @@
 #include <eigen3/Eigen/Eigen>
 #include <eigen3/Eigen/Dense>
 
-
+#include <pcl/kdtree/impl/kdtree_flann.hpp>
+#include <pcl/search/kdtree.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl_conversions/pcl_conversions.h>
+#include <pcl/registration/icp.h>
+#include <pcl/registration/icp_nl.h>
+#include <pcl/registration/transforms.h>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
 
@@ -51,18 +55,13 @@ void _load_pcd() {
     cout << "Load PCDs success" << endl;
 }
 
-void _publish() {
-    
-    //cloud_scene->header.frame_id = "/map";
-    //cloud_scene->header.stamp = ros::Time::now().toNSec();
-    //m_pub.publish(cloud_scene);
-    //cout << "Point cloud publish success" << endl;
-    //ros::spinOnce();
-    
-    //pcl_conversions::fromPCL(cloud_scene, output);
-
-    //m_pub.publish(output);
-
+void _icp() {
+    pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
+    //icp.setInputSource(cloud_scene);
+    //icp.setInputTarget(cloud_map);
+    //PointCloud cloud_final;
+    //icp.align(cloud_final);
+    //cout << "Perform ICP done" << endl;
 }
 
 int main(int argc, char** argv) {
@@ -75,6 +74,7 @@ int main(int argc, char** argv) {
     m_pub_map = n.advertise<PointCloud> ("output_map", 1);
 
     _load_pcd();
+    _icp();
 
     // publish point cloud
     cloud_scene->header.frame_id = "/map";

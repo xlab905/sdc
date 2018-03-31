@@ -4,6 +4,8 @@ project(0560032_hw4)
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
 
+
+#set(PCL_DIR "/usr/local/pcl-1-8/share/pcl-1.8/")
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -12,7 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   visualization_msgs REQUIRED COMPONENTS
-  pcl_ros
+  pcl_ros REQUIRED COMPONENTS
+  #PCL REQUIRED
 )
 
 ## System dependencies are found with CMake's conventions
@@ -121,6 +124,7 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -202,6 +206,8 @@ include_directories(
 # catkin_add_nosetests(test)
 include_directories(0560032_hw4 ./include)
 include_directories(0560032_hw4 /opt/ros/kinetic/include)
+include_directories(0560032_hw4 ${PCL_INCLUDE_DIRS})
+link_directories(0560032_hw4 ${PCL_LIBRARY_DIRS})
 add_executable(hw4_node src/hw4.cpp)
-target_link_libraries(hw4_node ${catkin_LIBRARIES})
+target_link_libraries(hw4_node ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
