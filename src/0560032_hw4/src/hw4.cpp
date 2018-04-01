@@ -16,6 +16,8 @@
 #include <eigen3/Eigen/Eigen>
 #include <eigen3/Eigen/Dense>
 
+#include <tf/transform_broadcaster.h>
+
 #include <pcl/search/kdtree.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl_conversions/pcl_conversions.h>
@@ -38,9 +40,11 @@ using namespace std;
 string scene_filename, map_filename;
 PointCloud::Ptr cloud_scene (new PointCloud);
 PointCloud::Ptr cloud_map (new PointCloud);
+PointCloud::Ptr cloud_final (new PointCloud);
 
 // ros publisher
 ros::Publisher m_pub_scene, m_pub_map;
+//tf::TransformListener listener;
 
 int _load_pcd() {
 
@@ -64,8 +68,7 @@ void _icp() {
     icp.setInputSource(cloud_scene);
     icp.setInputTarget(cloud_map);
     cout << COUT_PREFIX << "Start performing icp ...";
-    PointCloud cloud_final;
-    icp.align(cloud_final);
+    icp.align(*cloud_final);
     cout << "... done" << endl;
     cout << COUT_PREFIX << "has converged: " << icp.hasConverged() << endl;
     cout << COUT_PREFIX << "score: " << icp.getFitnessScore() << endl;
