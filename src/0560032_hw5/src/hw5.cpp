@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
     
     m_pub_visual = n.advertise<visualization_msgs::Marker>("rec", 0);
 
-    // subscribe point cloud
+    // subscribe
     //m_sub_pcd = n.subscribe("/points_raw", 1000, _pcdCallback);
     m_sub_visual = n.subscribe("esr_can0_visualization", 1000, _visualCallback);
 
